@@ -43,7 +43,7 @@ public class DeliveryResultUI : MonoBehaviour
         animator.SetTrigger(POP_UP);
         backgroundImage.color = failedColor;
         timeChangeText.color = failedColor;
-        timeChangeText.text = GameManager.Instance.GetSubtractGamePlayingTimer().ToString() + " SECONDS";
+        timeChangeText.text = ((int)GameManager.Instance.GetSubtractGamePlayingTimer()).ToString() + " SECONDS";
         iconImage.sprite = failedSprite;
         messageText.text = "DELIVERY\nFAILED";
     }
@@ -54,7 +54,7 @@ public class DeliveryResultUI : MonoBehaviour
         animator.SetTrigger(POP_UP);
         backgroundImage.color = successColor;
         timeChangeText.color = successColor;
-        timeChangeText.text = GameManager.Instance.GetAddGamePlayingTimer().ToString() + " SECONDS";
+        timeChangeText.text = ((int)GameManager.Instance.GetAddGamePlayingTimer()).ToString() + " SECONDS";
         iconImage.sprite = successSprite;
         messageText.text = "DELIVERY\nSUCCESS";
     }

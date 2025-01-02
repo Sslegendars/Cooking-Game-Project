@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,8 @@ public class GamePauseUI : MonoBehaviour
             GameManager.Instance.TogglePauseGame();
         });
         mainMenuButton.onClick.AddListener(() =>
-        {
+        {   
+            NetworkManager.Singleton.Shutdown();
             Loader.Load(Loader.Scene.MainMenuScene);
         });
         optionsButton.onClick.AddListener(() =>
@@ -28,18 +30,18 @@ public class GamePauseUI : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
-        GameManager.Instance.OnGameUnPaused += GameManager_OnGameUnPaused;
+        GameManager.Instance.OnLocalGamePaused += GameManager_OnLocalGamePaused;
+        GameManager.Instance.OnLocalGameUnpaused += GameManager_OnLocalGameUnpaused;
 
         Hide();
     }
 
-    private void GameManager_OnGameUnPaused(object sender, System.EventArgs e)
+    private void GameManager_OnLocalGameUnpaused(object sender, System.EventArgs e)
     {
         Hide();
     }
 
-    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    private void GameManager_OnLocalGamePaused(object sender, System.EventArgs e)
     {
         Show();
     }
