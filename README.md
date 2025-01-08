@@ -17,15 +17,6 @@ In **Kitchen Chaos**, you’ll dive into the intense world of a busy kitchen. Ma
 
 ---
 
-## **Installation**  
-1. Clone this repository or download the ZIP file.  
-2. Open the project in Unity **(version X.X.X or later)**.  
-   - If prompted, select the appropriate Unity version for compatibility.  
-3. Ensure all required Unity packages are installed (e.g., Universal Render Pipeline).  
-4. Click **Play** in the Unity Editor or build the game for your platform.  
-
----
-
 ## **How to Play**  
 1. Control your chef as you navigate the kitchen.  
 2. Overcome obstacles and complete assigned tasks.  
