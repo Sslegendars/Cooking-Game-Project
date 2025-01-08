@@ -36,7 +36,4 @@ This project was created purely for educational purposes. It is not intended for
 
 ---
 
-## **Enjoy the Chaos!**  
-Step into the kitchen and test your skills. Share the game with friends, compare your scores, and experience the thrill of **Kitchen Chaos**!  
 
----
