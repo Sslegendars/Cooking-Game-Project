@@ -26,7 +26,7 @@ In **Kitchen Chaos**, you’ll dive into the intense world of a busy kitchen. Ma
 ---
 
 ## **Credits**  
-This project is inspired by and a recreation of the original game developed by **[Code Monkey](https://www.codemonkey.io/)**.  
+This project is inspired by and a recreation of the original game developed by **[Code Monkey]([https://www.codemonkey.io/](https://www.youtube.com/watch?v=AmGSEH7QcDg))**.  
 Special thanks to Code Monkey for the fantastic tutorials and inspiration!  
 
 ---
