@@ -9,13 +9,17 @@ public class HostDisconnectUI : MonoBehaviour
 
     private void Start()
     {
+        playAgainButton.onClick.AddListener(() =>
+        {
+            Loader.Load(Loader.Scene.MainMenuScene);
+        });
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManagar_OnClientDisconnectCallback;       
         Hide();
     }
 
     private void NetworkManagar_OnClientDisconnectCallback(ulong clientId)
     {
-        if(clientId == NetworkManager.ServerClientId)
+        if(clientId != NetworkManager.ServerClientId)
         {
             // Server is shutting down
             Show();

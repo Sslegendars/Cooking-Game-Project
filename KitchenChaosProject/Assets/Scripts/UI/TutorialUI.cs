@@ -47,9 +47,9 @@ public class TutorialUI : MonoBehaviour
     private void UpdateVisual()
     {
         keyMoveUpText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
-        keyMoveDownText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
-        keyMoveLeftText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
-        keyMoveRightText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
+        keyMoveDownText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Down);
+        keyMoveLeftText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Left);
+        keyMoveRightText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Right);
         keyInteractText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact);
         keyInteractAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact_Alternate);
         keyPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);

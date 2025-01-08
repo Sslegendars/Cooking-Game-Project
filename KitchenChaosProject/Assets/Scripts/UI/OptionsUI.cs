@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class OptionsUI : MonoBehaviour
 {   
     public static OptionsUI Instance { get; private set; }
+    [Header("Button Settings")]
     [SerializeField]
     private Button soundEffectButton;
     [SerializeField]
@@ -32,7 +33,7 @@ public class OptionsUI : MonoBehaviour
     private Button gamepadInteractAlternateButton;
     [SerializeField]
     private Button gamepadPauseButton;
-   
+    [Header("Text Settings")]
     [SerializeField]
     private TextMeshProUGUI soundEffectText;
     [SerializeField]
@@ -104,25 +105,7 @@ public class OptionsUI : MonoBehaviour
     private void GameManager_OnGameUnPaused(object sender, EventArgs e)
     {
         Hide();
-    }
-
-    private void UpdateVisual()
-    {
-        soundEffectText.text = "Sound Effects: " + MathF.Round(SoundManager.Instance.GetVolume() * 10f);
-        musicText.text = "Music: " + MathF.Round(MusicManager.Instance.GetVolume() * 10f);
-
-        moveUpText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
-        moveDownText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Down);
-        moveLeftText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Left);
-        moveRightText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Right);
-        interactText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact);
-        interactAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact_Alternate);
-        pauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);
-        gamepadInteractText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Interact);
-        gamepadInteractAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Interact_Alternate);
-        gamepadPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Pause);
-
-    }
+    }   
     public void Show( Action onCloseButtonAction)
     {   
         this.onCloseButtonAction = onCloseButtonAction;
@@ -150,5 +133,22 @@ public class OptionsUI : MonoBehaviour
             HidePressToRebindKey();
             UpdateVisual();
         });
+    }
+    private void UpdateVisual()
+    {
+        soundEffectText.text = "Sound Effects: " + MathF.Round(SoundManager.Instance.GetVolume() * 10f);
+        musicText.text = "Music: " + MathF.Round(MusicManager.Instance.GetVolume() * 10f);
+
+        moveUpText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Up);
+        moveDownText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Down);
+        moveLeftText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Left);
+        moveRightText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Move_Right);
+        interactText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact);
+        interactAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact_Alternate);
+        pauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);
+        gamepadInteractText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Interact);
+        gamepadInteractAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Interact_Alternate);
+        gamepadPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Pause);
+
     }
 }

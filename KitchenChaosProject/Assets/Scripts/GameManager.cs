@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour
@@ -35,8 +36,9 @@ public class GameManager : NetworkBehaviour
     private Dictionary<ulong, bool> playerPauseDictionary;
     private bool autoTestGamePausedState;
 
-    private float addGamePlayingTimer = 30f;
-    private float subtractGamePlayingTimer = -5f;
+   
+    private const float addGamePlayingTimer = 10f;
+    private const float subtractGamePlayingTimer = 5f;
 
     
     private void Awake()
@@ -55,6 +57,7 @@ public class GameManager : NetworkBehaviour
 
         
     }
+    
     public override void OnNetworkSpawn()
     {
         state.OnValueChanged += State_OnValueChanged;
@@ -102,12 +105,13 @@ public class GameManager : NetworkBehaviour
     }
     private void DeliveryManager_OnRecipeFailed(object sender, EventArgs e)
     {
-        AddGamePlayingTime();
+        SubtractGamePlayingTime();
     }
 
     private void DeliveryManager_OnRecipeSuccess(object sender, EventArgs e)
     {
-        SubtractGamePlayingTime();
+        
+        AddGamePlayingTime();
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -258,19 +262,21 @@ public class GameManager : NetworkBehaviour
     private void AddGamePlayingTime()
     {   
         if(gamePlayingTimer.Value < gamePlayingTimerMax)
-        {
-            gamePlayingTimer.Value += addGamePlayingTimer;
-            if(gamePlayingTimer.Value > gamePlayingTimerMax)
+        {   
+            // if delivery recipe success
+            gamePlayingTimer.Value += addGamePlayingTimer;if (gamePlayingTimer.Value > gamePlayingTimerMax)
             {
-               gamePlayingTimer.Value = gamePlayingTimerMax;
+                gamePlayingTimer.Value = gamePlayingTimerMax;
             }
+            
         }      
                 
     }
     private void SubtractGamePlayingTime()
     {   
         if(gamePlayingTimer.Value > 0)
-        {
+        {   
+            // if delivery recipe failed
             gamePlayingTimer.Value -= subtractGamePlayingTimer;
             if(gamePlayingTimer.Value < 0)
             {
@@ -281,7 +287,7 @@ public class GameManager : NetworkBehaviour
     }
     public float GetAddGamePlayingTimer()
     {
-        return gamePlayingTimer.Value;
+        return addGamePlayingTimer;
     }
     public float GetSubtractGamePlayingTimer()
     {

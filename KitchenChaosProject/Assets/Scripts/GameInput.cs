@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class GameInput : MonoBehaviour
 {
@@ -32,10 +33,12 @@ public class GameInput : MonoBehaviour
         Instance = this;
         playerInputActions = new PlayerInputActions();
 
+
         if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS))
         {
-            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS)));
-        }
+            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
+
+        }        
 
         playerInputActions.Player.Enable();
         playerInputActions.Player.Interact.performed += Interact_performed;
@@ -72,23 +75,7 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-        //  Legacy Player Input
-        /*if (Input.GetKey(KeyCode.W))
-        {
-            inputVector.y += 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            inputVector.y -= 1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            inputVector.x -= 1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputVector.x += 1;
-        }*/
+        
         inputVector = inputVector.normalized;
         return inputVector;
     }
@@ -172,14 +159,16 @@ public class GameInput : MonoBehaviour
 
 
         }
-        inputAction.PerformInteractiveRebinding(bindingIndex).OnComplete(callback =>
-        {
+        inputAction.PerformInteractiveRebinding(bindingIndex)
+            .OnComplete(callback =>{
+
             callback.Dispose();
             playerInputActions.Player.Enable();
             onActionRebound();
-
             
+            Debug.Log("calýþtý");
             PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+           
             PlayerPrefs.Save();
 
             OnBindingRebind?.Invoke(this,EventArgs.Empty);
@@ -187,4 +176,5 @@ public class GameInput : MonoBehaviour
         .Start();
 
     }
+    
 }
